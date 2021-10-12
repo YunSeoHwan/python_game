@@ -10,6 +10,9 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 # 화면 타이틀 설정
 pygame.display.set_caption("YSH Game")
 
+# FPS
+clock = pygame.time.Clock()
+
 # 배경 이미지 설정
 background = pygame.image.load("image/background.png")
 
@@ -25,22 +28,27 @@ character_y = screen_height - character_height  # 캐릭터 y좌표
 to_x = 0
 to_y = 0
 
+# 캐릭터 속도
+character_speed = 0.6
+
 # 이벤트 루프
 running = True  # 게임 진행 유무
 while running:
+  dt = clock.tick(60)   # 초당 게임화면 프레임 수
+
   for event in pygame.event.get():
     if event.type == pygame.QUIT:   # 창이 닫히는 이벤트가 발생하였는가?
       running = False   # 게임 진행중 아님
 
     if event.type == pygame.KEYDOWN:    # 키보드 입력받았을 때
       if event.key == pygame.K_LEFT:    # 왼쪽
-        to_x -= 5
+        to_x -= character_speed
       elif event.key == pygame.K_RIGHT: # 오른쪽
-        to_x += 5
+        to_x += character_speed
       elif event.key == pygame.K_DOWN:  # 아래쪽
-        to_y += 5
+        to_y += character_speed
       elif event.key == pygame.K_UP:    # 위쪽
-        to_y -= 5
+        to_y -= character_speed
 
     if event.type == pygame.KEYUP:    # 키보드 떼면 정지
       if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -48,8 +56,8 @@ while running:
       elif event.key == pygame.K_UP or event.key == pygame.K_DOWN:
         to_y = 0
 
-  character_x += to_x   # 실제 위치 변경
-  character_y += to_y
+  character_x += to_x * dt  # 실제 위치 변경
+  character_y += to_y * dt  # dt 값을 곱해줌으로써 속도를 일정하게 유지
 
   # 가로 경계값 표시
   if character_x < 0:
