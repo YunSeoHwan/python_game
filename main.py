@@ -24,6 +24,14 @@ character_height = character_size[1]  # 캐릭터 세로크기
 character_x = (screen_width / 2) - (character_width / 2)  # 캐릭터 x좌표
 character_y = screen_height - character_height  # 캐릭터 y좌표
 
+# 적 캐릭터 생성
+enemy = pygame.image.load("image/enemy.png")
+enemy_size = enemy.get_rect().size
+enemy_width = enemy_size[0]   
+enemy_height = enemy_size[1]  
+enemy_x = (screen_width / 2) - (enemy_width / 2) 
+enemy_y = (screen_height / 2) - (enemy_height / 2) 
+
 # 이동할 좌표
 to_x = 0
 to_y = 0
@@ -62,7 +70,7 @@ while running:
   # 가로 경계값 표시
   if character_x < 0:
     character_x = 0
-  elif character_x > screen_width - character_width:    # 캐릿터는 오른쪽 아래로 그려지기 때문
+  elif character_x > screen_width - character_width:    # 캐릭터는 오른쪽 아래로 그려지기 때문
     character_x = screen_width - character_width
 
   # 세로 경계값 표시
@@ -71,9 +79,25 @@ while running:
   elif character_y > screen_height - character_height:
     character_y = screen_height - character_height
 
+  # 충돌 처리
+  character_rect = character.get_rect()   # 캐릭터 rect 값 자체에 위치를 설정
+  character_rect.left = character_x       # blit는 그리기 값만 준것이지 실제로는 고정 값
+  character_rect.top = character_y        # 직접 rect 좌표에 값 입력
+
+  enemy_rect = enemy.get_rect()
+  enemy_rect.left = enemy_x
+  enemy_rect.top = enemy_y
+
+  # 충돌 체크
+  if character_rect.colliderect(enemy_rect):
+    print("충돌했어요")
+    running = False
+
   screen.blit(background, (0, 0))   # 배경 그리기
 
   screen.blit(character, (character_x, character_y))    # 캐릭터 그리기
+
+  screen.blit(enemy, (enemy_x, enemy_y))  # 적 캐릭터 그리기
 
   pygame.display.update()   # 게임화면 그리기
 
