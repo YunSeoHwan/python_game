@@ -1,6 +1,7 @@
 import pygame
-
-pygame.init()   # 초기화(반드시 필요)
+#########################################################
+# 기본 초기화(반드시 해야 할 것들)
+pygame.init()
 
 # 화면 크기 설정
 screen_width = 480
@@ -12,6 +13,9 @@ pygame.display.set_caption("YSH Game")
 
 # FPS
 clock = pygame.time.Clock()
+#########################################################
+
+# 1. 사용자 게임 초기화 (배경 화면, 게임 이미지, 좌표, 폰트 등)
 
 # 배경 이미지 설정
 background = pygame.image.load("image/background.png")
@@ -47,6 +51,8 @@ to_y = 0
 
 # 캐릭터 속도
 character_speed = 0.6
+
+# 2. 이벤트 처리(키보드, 마우스 등)
 
 # 이벤트 루프
 running = True  # 게임 진행 유무
