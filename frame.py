@@ -16,7 +16,6 @@ clock = pygame.time.Clock()
 #########################################################
 
 # 1. 사용자 게임 초기화 (배경 화면, 게임 이미지, 좌표, 폰트 등)
-
 running = True  
 while running:
   dt = clock.tick(60) 
