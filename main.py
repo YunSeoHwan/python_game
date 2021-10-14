@@ -22,7 +22,8 @@ clock = pygame.time.Clock()
 background = pygame.image.load("image/paper_bg.jpg")
 
 # 플레이어 설정
-player = pygame.image.load("image/character.png")
+player = pygame.image.load("image/1.png")
+player = pygame.transform.scale(player, (70, 70))
 player_size = player.get_rect().size
 player_width = player_size[0]
 player_height = player_size[1]
