@@ -5,7 +5,7 @@ import os
 pygame.init()
 
 # 화면 크기 설정
-screen_width = 640 
+screen_width = 680 
 screen_height = 480
 screen = pygame.display.set_mode((screen_width, screen_height))
 
@@ -18,23 +18,20 @@ clock = pygame.time.Clock()
 
 # 1. 사용자 게임 초기화 (배경 화면, 게임 이미지, 좌표, 폰트 등)
 current_path = os.path.dirname(__file__)  # 현재 파일 위치 반환
-image_path = os.path.join(current_path, "project_game/project2_image") # project_game 속 project2_image 위치 반환
+image_path = os.path.join(current_path, "project2_image") # project2_image 위치 반환
 
 # 배경화면
-background = pygame.image.load(os.path.join(image_path, "background.png"))
+background = os.path.join(image_path, "background.png")
 
 # 스테이지 생성
-stage = pygame.image.load(os.path.join(image_path, "stage.png"))
+stage = os.path.join(image_path, "stage.png")
 stage_size = stage.get_rect().size
 stage_height = stage_size[1]
 
 # 캐릭터 생성
-character = pygame.image.load(os.path.join(image_path, "character.png"))
+character = os.path.join(image_path, "character.png")
 character_size = character.get_rect().size
-character_width = character_size[0]
-character_height = character_size[1]
-character_x = (screen_width / 2) - (character_width / 2)
-character_y = screen_height - character_height - stage_height
+
 
 running = True  
 while running:
@@ -51,8 +48,7 @@ while running:
 
   # 5. 화면 그리기
   screen.blit(background, (0, 0))
-  screen.blit(stage, (0, screen_height - stage_height))
-  screen.blit(character, (character_x, character_y))
+  screen.blit(stage, (0,screen_height - stage_height))
 
   pygame.display.update()
 
