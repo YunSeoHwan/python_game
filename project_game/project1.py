@@ -19,20 +19,21 @@ clock = pygame.time.Clock()
 # 1. 사용자 게임 초기화 (배경 화면, 게임 이미지, 좌표, 폰트 등)
 
 # 배경화면
-background = pygame.image.load("image/paper_bg.jpg")
+background = pygame.image.load("project_game/project1_image/paper_bg.jpg")
 
 # 플레이어 설정
-player = pygame.image.load("image/1.png")
+player = pygame.image.load("project_game/project1_image/1.png")
 player_size = player.get_rect().size
 player_width = player_size[0]
 player_height = player_size[1]
 player_x = (screen_width / 2) - (player_width / 2)
+player = pygame.transform.scale(player, (70, 70))
 player_y = screen_height - player_height
 
 player_speed = 10
 
 # 장애물 설정
-enemy = pygame.image.load("image/enemy.png")
+enemy = pygame.image.load("project_game/project1_image/enemy.png")
 enemy_size = enemy.get_rect().size
 enemy_width = enemy_size[0]
 enemy_hegiht = enemy_size[1]
