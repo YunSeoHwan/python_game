@@ -44,6 +44,28 @@ weapone_width = weapone_size[0]
 # 무기 발사 리스트
 weapones = []
 
+# 공 생성
+ball_image = [
+  pygame.image.load(os.path.join(image_path, "balloon1.png")),
+  pygame.image.load(os.path.join(image_path, "balloon2.png")),
+  pygame.image.load(os.path.join(image_path, "balloon3.png")),
+  pygame.image.load(os.path.join(image_path, "balloon4.png"))]
+
+# 공 크기에 따른 속도
+ball_speed_y = [-18, -15, -12, -9]
+
+# 공들
+balls = []
+
+# 최초 발생 큰 공
+balls.append({
+  "pos_x" : 50, # 공의 x좌표
+  "pos_y" : 50, # 공의 y좌표
+  "img_idx" : 0,  # 공의 이미지 인덱스
+  "to_x" : 3, # x축 이동방향, -3이면 왼쪽
+  "to_y" : -6,  # y축 이동방향
+  "init_spd" : ball_speed_y[0]}) # y 최초 속도
+
 # 이동 좌표
 to_x = 0
 
@@ -85,7 +107,9 @@ while running:
     character_x = screen_width - character_width
     
   # 무기 위치 조정
-  weapones = [ [w[0], w[1] - weapone_speed] for w in weapones if w[1] > 0] # 천장에 닿으면 없애기
+  weapones = [ [w[0], w[1] - weapone_speed] for w in weapones]  # 무기 위치 리스트에 저장
+
+  weapones = [ [w[0], w[1]] for w in weapones if w[1] > 0] # 천장에 닿으면 없애기
 
   # 4. 충돌 처리
 
